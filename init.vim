@@ -21,6 +21,7 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " Code and files fuzzy finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'jiangmiao/auto-pairs'
 call plug#end()
 
 syntax on
@@ -82,7 +83,7 @@ nnoremap <silent><leader>x :x<CR>
 " let NERDTreeMinimalUI = 1
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
-nnoremap <Leader>pt :NERDTreeToggle<Enter>
+nnoremap <Leader>pt :NERDTreeToggle<Enter>:vertical resize 40<Enter>
 nnoremap <silent> <Leader>pv :NERDTreeFind<CR>
 
 " For simple sizing of splits.
@@ -115,14 +116,6 @@ nmap <leader>m :marks<CR>
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
-" editing
-inoremap ( ()<Esc>i
-inoremap { {}<Esc>i
-inoremap {<CR> {<CR>}<Esc>O
-inoremap [ []<Esc>i
-inoremap < <><Esc>i
-inoremap ' ''<Esc>i
-inoremap " ""<Esc>i
 
 " get out of bracets
 " imap <C-K> <C-O>%<C-O>%<right>
@@ -157,6 +150,21 @@ nnoremap <Leader>- :vertical resize -5<CR>
 nnoremap <silent><leader>\ :vs<CR>
 " Split screen
 nnoremap <silent><leader>/ :split<CR>
+
+" Zoom / Restore window.
+function! s:ZoomToggle() abort
+    if exists('t:zoomed') && t:zoomed
+        execute t:zoom_winrestcmd
+        let t:zoomed = 0
+    else
+        let t:zoom_winrestcmd = winrestcmd()
+        resize
+        vertical resize
+        let t:zoomed = 1
+    endif
+endfunction
+command! ZoomToggle call s:ZoomToggle()
+nnoremap <silent> <Leader>,m :ZoomToggle<CR>
 
 " folder search 
 nnoremap <Leader>ps :Rg<SPACE>
@@ -248,3 +256,4 @@ endif
 " vim-test shortcut for running tests
 nnoremap <silent><leader>; :TestNearest<CR>
 nnoremap <silent><leader>' :TestFile<CR>
+

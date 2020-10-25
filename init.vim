@@ -3,9 +3,8 @@ call plug#begin('~/.config/nvim/plugged')
 " Airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-
+Plug 'junegunn/vim-easy-align'
 Plug 'janko/vim-test'             " Run Ruby and Elixir tests
-
 Plug 'morhetz/gruvbox'
 Plug 'jremmen/vim-ripgrep'
 Plug 'tpope/vim-fugitive'
@@ -17,13 +16,11 @@ Plug 'git@github.com:kien/ctrlp.vim.git'
 " Plug 'git@github.com:Valloric/YouCompleteMe.git'
 " Use release branch (recommend)
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
 Plug 'mbbill/undotree'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " Code and files fuzzy finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-
 call plug#end()
 
 syntax on
@@ -71,6 +68,8 @@ let g:netrw_browse_split = 2
 let g:netrw_banner = 0
 let g:netrw_winsize = 25
 
+
+au FileType markdown vmap <Leader>,<Bslash> :EasyAlign*<Bar><Enter>
 
 "fast save & exit
 nnoremap <c-s> :w<CR>

@@ -125,6 +125,16 @@ inoremap < <><Esc>i
 inoremap ' ''<Esc>i
 inoremap " ""<Esc>i
 
+" get out of bracets
+" imap <C-K> <C-O>%<C-O>%<right>
+
+" insert mode moving
+" In insert or command mode, move normally by using Ctrl
+inoremap <C-h> <Left>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-l> <Right>
+
 " move to head/tail 
 map <C-a> <ESC>^
 imap <C-a> <ESC>I
@@ -196,6 +206,8 @@ nmap <silent> <Leader>gd <Plug>(coc-definition)
 nmap <silent> <Leader>gy <Plug>(coc-type-definition)
 nmap <silent> <Leader>gi <Plug>(coc-implementation)
 nmap <silent> <Leader>gr <Plug>(coc-references)
+" Find symbol of current document."
+nnoremap <silent> <space>,o :<C-u>CocList outline<CR>
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -237,4 +249,3 @@ endif
 " vim-test shortcut for running tests
 nnoremap <silent><leader>; :TestNearest<CR>
 nnoremap <silent><leader>' :TestFile<CR>
-

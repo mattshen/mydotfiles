@@ -1,5 +1,4 @@
 call plug#begin('~/.config/nvim/plugged')
-
 " Airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -23,6 +22,17 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'jiangmiao/auto-pairs'
 call plug#end()
+
+" set leader
+let mapleader=" "
+
+" clipboard
+set clipboard=unnamed
+
+" convenience shortcuts to edit and reload this file
+nnoremap <silent><leader>e1 :e ~/.config/nvim/init.vim<CR>
+nnoremap <silent><leader>e2 :e ~/.config/nvim/vsinit.vim<CR>
+nnoremap <Leader><CR> :so ~/.config/nvim/init.vim<CR>
 
 syntax on
 
@@ -64,7 +74,6 @@ if executable('rg')
 endif
 
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-let mapleader=" "
 let g:netrw_browse_split = 2
 let g:netrw_banner = 0
 let g:netrw_winsize = 25
@@ -142,6 +151,9 @@ nmap <leader>h :wincmd h<CR>
 nmap <leader>j :wincmd j<CR>
 nmap <leader>k :wincmd k<CR>
 nmap <leader>l :wincmd l<CR>
+nnoremap <leader>wt :wincmd t<CR>
+nnoremap <leader>wb :wincmd b<CR>
+
 map - <C-W>-
 map + <C-W>+
 nnoremap <Leader>+ :vertical resize +5<CR>
@@ -214,7 +226,8 @@ nmap <silent> <Leader>gy <Plug>(coc-type-definition)
 nmap <silent> <Leader>gi <Plug>(coc-implementation)
 nmap <silent> <Leader>gr <Plug>(coc-references)
 " Find symbol of current document."
-nnoremap <silent> <space>,o :<C-u>CocList outline<CR>
+nnoremap <silent> <space>co :<C-u>CocList outline<CR>
+nnoremap <leader>cs :CocSearch <C-R>=expand("<cword>")<CR><CR>
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -256,4 +269,3 @@ endif
 " vim-test shortcut for running tests
 nnoremap <silent><leader>; :TestNearest<CR>
 nnoremap <silent><leader>' :TestFile<CR>
-

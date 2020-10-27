@@ -34,6 +34,9 @@ nnoremap <silent><leader>e1 :e ~/.config/nvim/init.vim<CR>
 nnoremap <silent><leader>e2 :e ~/.config/nvim/vsinit.vim<CR>
 nnoremap <Leader><CR> :so ~/.config/nvim/init.vim<CR>
 
+set autoread                                                                                                                                                                                    
+au CursorHold * checktime
+
 syntax on
 
 set signcolumn=yes
@@ -91,7 +94,7 @@ nnoremap <silent><leader>x :x<CR>
 " nerdtree
 " let NERDTreeMinimalUI = 1
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+" autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 nnoremap <Leader>pt :NERDTreeToggle<Enter>:vertical resize 40<Enter>
 nnoremap <silent> <Leader>pv :NERDTreeFind<CR>
 
@@ -101,6 +104,7 @@ nnoremap <silent> <Leader>pv :NERDTreeFind<CR>
 " file finder mapping
 " nmap ,e :Files<CR>
 " tags (symbols) in current file finder mapping
+nmap <leader>,e :Files<CR>
 nmap <leader>,g :BTag<CR>
 " the same, but with the word under the cursor pre filled
 nmap <leader>,wg :execute ":BTag " . expand('<cword>')<CR>
@@ -125,16 +129,15 @@ nmap <leader>m :marks<CR>
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
-
 " get out of bracets
 " imap <C-K> <C-O>%<C-O>%<right>
 
 " insert mode moving
 " In insert or command mode, move normally by using Ctrl
-inoremap <C-h> <Left>
-inoremap <C-j> <Down>
-inoremap <C-k> <Up>
-inoremap <C-l> <Right>
+inoremap <c-h> <Left>
+inoremap <c-j> <Down>
+inoremap <c-k> <Up>
+inoremap <c-l> <Right>
 
 " move to head/tail 
 map <C-a> <ESC>^
@@ -158,10 +161,6 @@ map - <C-W>-
 map + <C-W>+
 nnoremap <Leader>+ :vertical resize +5<CR>
 nnoremap <Leader>- :vertical resize -5<CR>
-" Vertically split screen
-nnoremap <silent><leader>\ :vs<CR>
-" Split screen
-nnoremap <silent><leader>/ :split<CR>
 
 " Zoom / Restore window.
 function! s:ZoomToggle() abort
@@ -269,3 +268,5 @@ endif
 " vim-test shortcut for running tests
 nnoremap <silent><leader>; :TestNearest<CR>
 nnoremap <silent><leader>' :TestFile<CR>
+
+

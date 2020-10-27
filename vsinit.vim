@@ -5,6 +5,9 @@ nnoremap <silent><leader>e1 :e ~/.config/nvim/vsinit.vim<CR>
 nnoremap <silent><leader>e2 :e ~/.config/nvim/init.vim<CR>
 nnoremap <Leader><CR> :so ~/.config/nvim/vsinit.vim<CR>
 
+set autoread                                                                                                                                                                                    
+au CursorHold * checktime
+
 " set leader
 let mapleader=" "
 
@@ -29,17 +32,10 @@ nmap <leader>h :wincmd h<CR>
 nmap <leader>j :wincmd j<CR>
 nmap <leader>k :wincmd k<CR>
 nmap <leader>l :wincmd l<CR>
-nnoremap <leader>wt :wincmd t<CR>
-nnoremap <leader>wb :wincmd b<CR>
 
 map - <C-W>-
-map + <C-W>+
-nnoremap <Leader>+ :vertical resize +5<CR>
-nnoremap <Leader>- :vertical resize -5<CR>
-" Vertically split screen
-nnoremap <silent><leader>\ :vs<CR>
-" Split screen
-nnoremap <silent><leader>/ :split<CR>
+nnoremap <Leader>+ :vertical resize +10<CR>
+nnoremap <Leader>- :vertical resize -10<CR>
 
 " Zoom / Restore window.
 function! s:ZoomToggle() abort

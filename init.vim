@@ -1,5 +1,6 @@
 call plug#begin('~/.config/nvim/plugged')
 " Airline
+Plug 'ThePrimeagen/vim-be-good'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/vim-easy-align'
@@ -10,7 +11,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'pangloss/vim-javascript'    " JavaScript support
 Plug 'leafgarland/typescript-vim'
 Plug 'vim-utils/vim-man'
-Plug 'lyuts/vim-rtags'
+" Plug 'lyuts/vim-rtags'
 Plug 'git@github.com:kien/ctrlp.vim.git'
 " Plug 'git@github.com:Valloric/YouCompleteMe.git'
 " Use release branch (recommend)
@@ -51,7 +52,23 @@ set nowrap
 set smartcase
 set noswapfile
 set nobackup
-set incsearch
+set hlsearch 
+
+
+" Toggle signcolumn. Works only on vim>=8.0 or NeoVim
+function! ToggleSignColumn()
+    if !exists("b:signcolumn_on") || b:signcolumn_on
+        set signcolumn=no
+        let b:signcolumn_on=0
+    else
+        set signcolumn=yes
+        let b:signcolumn_on=1
+    endif
+endfunction
+
+" toggle number
+noremap <F3> :set invnumber invrelativenumber<CR>::call ToggleSignColumn()<CR>
+nnoremap <F2> :set invpaste paste?<CR>
 
 set colorcolumn=120
 " highlight ColorColumn ctermbg=0 guibg=lightgrey
@@ -226,7 +243,8 @@ nmap <silent> <Leader>gi <Plug>(coc-implementation)
 nmap <silent> <Leader>gr <Plug>(coc-references)
 " Find symbol of current document."
 nnoremap <silent> <space>co :<C-u>CocList outline<CR>
-nnoremap <leader>cs :CocSearch <C-R>=expand("<cword>")<CR><CR>
+nnoremap <leader>cs :CocSearch 
+nnoremap <leader>wcs :CocSearch <C-R>=expand("<cword>")<CR><CR>
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -268,5 +286,4 @@ endif
 " vim-test shortcut for running tests
 nnoremap <silent><leader>; :TestNearest<CR>
 nnoremap <silent><leader>' :TestFile<CR>
-
 
